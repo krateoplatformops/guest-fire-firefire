@@ -1,0 +1,7 @@
+# 
+---
+namespace: guest-fire-firefire-ns
+image: ghcr.io/krateoplatformops/guest-fire-firefire:latest
+replicas: 1
+name: guest-fire-firefire
+host: fireworks.krateo.site

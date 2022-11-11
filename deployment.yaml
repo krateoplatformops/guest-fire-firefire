@@ -1,0 +1,83 @@
+apiVersion: deployment.krateo.io/v1alpha1
+kind: FireworksApp
+metadata:
+  labels:
+    crossplane.io/composite: firefire-fireworksapp
+  name: firefire-fireworksapp
+  uid: 633c082d-4b9c-4f42-9302-35688e4a26c9
+spec:
+  compositionRef:
+    name: fireworksapp.deployment.krateo.io
+  compositionUpdatePolicy: Automatic
+  description: Fireworks App Deployment
+  icon: fa-solid fa-fire
+  links:
+  - icon: fa-brands fa-git
+    title: krateoplatformops/guest-fire-firefire
+    url: https://github.com/krateoplatformops/guest-fire-firefire
+  owner: mauro
+  plugins:
+  - endpointName: argocd
+    icon: fa-solid fa-diagram-project
+    name: resources
+    type: argocd
+    value: firefire-fireworksapp
+  - endpointName: github
+    icon: fa-solid fa-book
+    name: documentation
+    type: doc
+    values:
+    - '[krateoplatformops][guest-fire-firefire]README.md'
+  - icon: fa-brands fa-docker
+    name: kubernetes
+    type: kubernetes
+    value: deploymentId
+  - endpointName: github
+    icon: fa-solid fa-person-running
+    name: pipelines
+    type: pipeline
+    values:
+    - '[krateoplatformops][guest-fire-firefire]Build Docker image for every commit'
+  resourceRefs:
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: ProviderConfig
+    name: firefire-fireworksapp-provider-k8s-pc-in
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: Object
+    name: firefire-fireworksapp-argocd-app-object
+  - apiVersion: git.krateo.io/v1alpha1
+    kind: ProviderConfig
+    name: firefire-fireworksapp-provider-git-pc
+  - apiVersion: kubernetes.crossplane.io/v1alpha1
+    kind: Object
+    name: firefire-fireworksapp-fireworksapp-values
+  - apiVersion: git.krateo.io/v1alpha1
+    kind: Repo
+    name: firefire-fireworksapp-kl7q6
+  - apiVersion: github.krateo.io/v1alpha1
+    kind: ProviderConfig
+    name: firefire-fireworksapp-provider-github-pc
+  - apiVersion: github.krateo.io/v1alpha1
+    kind: Repo
+    name: firefire-fireworksapp-llgvc
+  tags:
+  - fireworks
+  - template
+  - krateo
+  - katy perry
+  title: firefire
+  values:
+    endpointName: github
+    fromRepo:
+      organizationName: krateoplatformops
+      repositoryName: krateo-template-fireworksapp
+      schema: https
+    host: fireworks.krateo.site
+    namespace: krateo-system
+    organizationName: krateoplatformops
+    replicas: 1
+    repositoryName: guest-fire-firefire
+    toRepo:
+      organizationName: krateoplatformops
+      repositoryName: guest-fire-firefire
+      schema: https
